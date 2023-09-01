@@ -11,7 +11,7 @@
             </svg>
         </div>
         <h1 class="display-5 fw-bold">
-            PROJECT (HOME)
+            QUI SEI SU PROJECTS.BLADE.PHP
         </h1>
 
         <p class="col-md-8 fs-4"> Pagina iniziale di laravel-auth</p>
