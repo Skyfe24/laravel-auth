@@ -25,10 +25,13 @@
                         </li>
                         
                         </li>
+                        @if ($project->image)
+                        <img src="{{ $project->getImage() }}" alt="{{ $project->name }}">
+                        @endif
                     </ul>
                 </div>
             </div>
         </div>
-        <a href="{{ route('admin.projects.index') }}" class="btn btn-secondary mt-4">Back</a>
+        <a href="{{ route('projects.index') }}" class="btn btn-secondary mt-4">Back</a>
     </div>
 @endsection

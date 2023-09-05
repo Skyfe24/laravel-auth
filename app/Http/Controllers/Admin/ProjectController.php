@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
@@ -31,7 +32,7 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $img_path = Storage::put('uploads', $data['image']);
     }
 
     /**
@@ -39,7 +40,7 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        return view('projects.show', compact('projects'));
+        return view('admin.show', compact('project'));
 
         //
     }
@@ -49,7 +50,7 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        return view('projects.edit', compact('projects'));
+        return view('admin.edit', compact('project'));
     }
 
     /**
@@ -57,7 +58,9 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
-        //
+        $project->update([$project]);
+
+        return to_route('projects.show', $project)->with('message', 'Progetto modificato con successo');
     }
 
     /**
