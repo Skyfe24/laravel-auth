@@ -9,9 +9,9 @@
     <div class="row mt-3">
       <div class="col-6">
         <div class="mb-3">
-          <label for="title" class="form-label">Titolo</label>
-          <input type="text" class="form-control" id="title" value="{{ old('title', $project->title) }}"
-            name="title">
+          <label for="name" class="form-label">Titolo</label>
+          <input type="text" class="form-control" id="name" value="{{ old('name', $project->name) }}"
+            name="name">
         </div>
       </div>
       <div class="col-5">

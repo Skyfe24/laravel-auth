@@ -32,7 +32,13 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        $img_path = Storage::put('uploads', $data['image']);
+        $img_path = Storage::put('uploads', $request->get('image'));
+        $newProject = new Project();
+        $newProject->fill($request->all());
+        $newProject->image =  $img_path;
+        $newProject->save();
+
+        return to_route('project.show', $newProject);
     }
 
     /**
@@ -58,7 +64,7 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
-        $project->update([$project]);
+        $project->update($request->all());
 
         return to_route('projects.show', $project)->with('message', 'Progetto modificato con successo');
     }
