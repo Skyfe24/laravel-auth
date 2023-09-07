@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+  
   <div class="d-flex justify-content-end mt-3">
+    <a class="btn btn-primary" href="{{ route('projects.create')}}" >Create</a>
   </div>
   <table class="table mt-3">
     <thead>

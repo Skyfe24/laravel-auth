@@ -24,7 +24,8 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('projects.show', compact('projects'));
+        $project = new Project();
+        return view('admin.edit', compact('project'));
     }
 
     /**
@@ -32,13 +33,20 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        $img_path = Storage::put('uploads', $request->get('image'));
+
         $newProject = new Project();
         $newProject->fill($request->all());
-        $newProject->image =  $img_path;
+
+
+        if ($request->image) {
+            $img_path = Storage::put('uploads', $request->image);
+            $newProject->image =  $img_path;
+        }
+
         $newProject->save();
 
-        return to_route('project.show', $newProject);
+
+        return to_route('projects.show', $newProject);
     }
 
     /**
@@ -64,7 +72,20 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
-        $project->update($request->all());
+
+
+
+
+        $project->fill($request->all());
+
+
+        if ($request->image) {
+            $img_path = Storage::put('uploads', $request->image);
+            $project->image =  $img_path;
+        }
+
+        $project->save();
+
 
         return to_route('projects.show', $project)->with('message', 'Progetto modificato con successo');
     }
@@ -75,6 +96,6 @@ class ProjectController extends Controller
     public function destroy(Project $project)
     {
         $project->delete();
-        return to_route('projects');
+        return to_route('projects.index');
     }
 }

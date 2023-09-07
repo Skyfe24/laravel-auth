@@ -14,4 +14,9 @@ class Project extends Model
         'description',
         'link',
     ];
+
+    public function getImage()
+    {
+        return asset('storage/' . $this->image);
+    }
 }
